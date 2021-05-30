@@ -39,12 +39,16 @@
 
 .App-main {
   padding: 1em;
-  width: 65%;
+  font-size: 0.9em;
 }
-.title, .item {
-  display: flex;
-  flex-direction: row;
-  border: 1px black solid;
-  flex: 1;
+@media (max-width: 1024px) {
+  .App-main {
+    font-size: 0.7em;
+  }
 }
-
+.functionArea {
+  margin-bottom: .5em;
+}
+table, th, td {
+  border: 1px solid white
+}

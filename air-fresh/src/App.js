@@ -37,7 +37,7 @@ function App() {
     console.log(station);
     let after;
     if(station) {
-      after = records.filter(record => record.Site.indexOf(station) >= 0)
+      after = data.records.filter(record => record.Site.indexOf(station) >= 0)
     } else {
       after = data.records
     }
@@ -49,14 +49,34 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="App-main">
-          <label>查詢檢測站</label>
-          <input type="text" onKeyPress={(event) => SiteSearch(event.target.value)}/>
-          <select onChange={(event) => cityChange(event.target.value)}>
-            <option value="" default>全部城市</option>
-            {counties?.map(county => <option value={county} key={county}>{county}</option>)}
-          </select>
-          <button onClick={sortPM25}>濃度排序</button>
-          <div className="title">
+          <div className="functionArea">
+            <label>查詢檢測站</label>
+            <input type="text" onKeyPress={(event) => SiteSearch(event.target.value)}/>
+            <select onChange={(event) => cityChange(event.target.value)}>
+              <option value="" default>全部城市</option>
+              {counties?.map(county => <option value={county} key={county}>{county}</option>)}
+            </select>
+            <button onClick={sortPM25}>濃度排序</button>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                {data?.fields.map(title => <th className="item" key={title.info.label}>{title.info.label}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {records?.map(record =>
+                <tr key={record.Site}>
+                  <td className="item">{record.Site}</td>
+                  <td className="item">{record.county}</td>
+                  <td className="item">{record.PM25}</td>
+                  <td className="item">{record.DataCreationDate}</td>
+                  <td className="item">{record.ItemUnit}</td>
+                </tr>)}
+            </tbody>
+          </table>
+          {/* <div className="title">
             {data?.fields.map(title => <div className="title" key={title.info.label}>{title.info.label}</div>)}
           </div>
           {records?.map(record => 
@@ -66,7 +86,7 @@ function App() {
             <div className="item">{record.PM25}</div>
             <div className="item">{record.DataCreationDate}</div>
             <div className="item">{record.ItemUnit}</div>
-          </div>)}
+          </div>)} */}
         </div>
       </header>
     </div>
