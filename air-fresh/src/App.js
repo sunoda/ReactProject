@@ -76,17 +76,6 @@ function App() {
                 </tr>)}
             </tbody>
           </table>
-          {/* <div className="title">
-            {data?.fields.map(title => <div className="title" key={title.info.label}>{title.info.label}</div>)}
-          </div>
-          {records?.map(record => 
-          <div className="item" key={record.Site}>
-            <div className="item">{record.Site}</div>
-            <div className="item">{record.county}</div>
-            <div className="item">{record.PM25}</div>
-            <div className="item">{record.DataCreationDate}</div>
-            <div className="item">{record.ItemUnit}</div>
-          </div>)} */}
         </div>
       </header>
     </div>
