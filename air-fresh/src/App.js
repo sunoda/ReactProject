@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 function App() {
   const [ data, setData ] = useState()
@@ -33,25 +33,21 @@ function App() {
     }
     setRecords(after)
   }
-  const SiteSearch = (station) => {
-    console.log(station);
+  const SiteSearch = (event) => {
     let after;
-    if(station) {
-      after = data.records.filter(record => record.Site.indexOf(station) >= 0)
-    } else {
-      after = data.records
+    if(event.keyCode === 0) {
+      event.target.value ? after = data.records.filter(record => record.Site.indexOf(event.target.value) >= 0)
+                         : after = data.records
     }
     setRecords(after)
-    console.log(data.records)
-    console.log(after)
   }
   return (
     <div className="App">
       <header className="App-header">
         <div className="App-main">
           <div className="functionArea">
-            <label>查詢檢測站</label>
-            <input type="text" onKeyPress={(event) => SiteSearch(event.target.value)}/>
+            <label className="labelTag">查詢檢測站 : </label>
+            <input type="text" onKeyPress={(event) => SiteSearch(event)} placeholder="輸入後請按確認鍵"/>
             <select onChange={(event) => cityChange(event.target.value)}>
               <option value="" default>全部城市</option>
               {counties?.map(county => <option value={county} key={county}>{county}</option>)}

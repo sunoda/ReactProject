@@ -23,7 +23,6 @@
 
 
 .App-main {
-  /* padding: 1em; */
   font-size: 0.9em;
 }
 
@@ -32,11 +31,19 @@
   position: fixed;
   background: #282c34;
 }
+.functionArea > input, .functionArea > select, .functionArea > button {
+  margin: 0 5px;
+  border-radius: 5px;
+}
+.functionArea > input
 table, th, td {
   border: 1px solid white
 }
 table {
   margin: 3em 0 0 0;
+}
+.labelTag {
+  font-size: .75em;
 }
 
 @media (max-width: 1024px) {
@@ -46,10 +53,16 @@ table {
   .functionArea {
     padding: .7em 6em;
   }
+  table {
+    margin: 5em 0 0 0;
+  }
 }
 
 @media (max-width: 640px) {
   .functionArea {
     padding: .7em 4em;
+  }
+  table {
+    margin: 7em 0 0 0;
   }
 }
