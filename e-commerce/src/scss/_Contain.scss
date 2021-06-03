@@ -1,0 +1,83 @@
+.contains {
+  @include flex-center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 0 10vmin 0;
+  .step_flow {
+    @include flex-center;
+    height: 200px;
+    width: 100%;
+    cursor: default;
+    .step1, .step2 {
+      @include flex-center;
+      flex-direction: column;
+    }
+    .step {
+      height: 40px;
+      width: 40px;
+      border: $cornflowerblue 2px solid;
+      color: $cornflowerblue;
+      border-radius: 50%;
+      line-height: 40px;
+      margin: 10px;
+      &.active {
+        background: $cornflowerblue;
+        color: $white;
+      }
+
+      &.done {
+        border: lighten($green, 25%);
+        background: lighten($green, 25%);
+        color: $white;
+      }
+    }
+    .step_line {
+      width: 150px;
+      height: 2px;
+      background: rgba(0, 0, 0, .1);
+      margin: 30px;
+      transform: translateY(-10px);
+    }
+  }
+  .info {
+    @include flex-center;
+    flex-direction: column;
+    background: $white;
+    width: 40%;
+    padding: 5% 15%;
+
+    .detail {
+      width: 100%;
+      .forename, .surname {
+        @include flex-center;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 1em 0;
+        span {
+          margin: 10px 0;
+        }
+        input {
+          width: calc(100% - 20px);
+          padding: 10px;
+        }
+      }
+    }
+    .action {
+      display: flex;
+      width: 100%;
+      margin: 10px 0;
+      justify-content: flex-end;
+      cursor: pointer;
+      .btn-next {
+        @include flex-center;
+        width: 100px;
+        justify-content: space-between;
+        padding: 10px;
+        border-radius: 20px;
+        background: $cornflowerblue;
+        color: $white;
+      }
+    }
+  }
+
+}
