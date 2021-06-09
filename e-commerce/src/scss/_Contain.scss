@@ -5,7 +5,7 @@
   padding: 0 0 10vmin 0;
   .step_flow {
     @include flex-center;
-    height: 200px;
+    padding: 30px 0;
     width: 100%;
     cursor: default;
     .step1, .step2 {
@@ -26,9 +26,12 @@
       }
 
       &.done {
-        border: lighten($green, 25%);
+        border: lighten($green, 25%) 2px solid;
         background: lighten($green, 25%);
         color: $white;
+      }
+      .hide {
+        display: none;
       }
     }
     .step_line {
@@ -44,21 +47,47 @@
     flex-direction: column;
     background: $white;
     width: 40%;
-    padding: 5% 15%;
-
+    padding: 2% 15%;
+    .hide {
+      display: none;
+    }
+    svg {
+      width: 100px;
+    }
     .detail {
       width: 100%;
-      .forename, .surname {
-        @include flex-center;
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 1em 0;
-        span {
-          margin: 10px 0;
+      @include flex-center;
+      .hide {
+        display: none;
+      }
+      .input_name {
+        width: 100%;
+        .forename, .surname {
+          @include flex-center;
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 1em 0;
+          span {
+            margin: 10px 0;
+          }
+          input {
+            width: 100%;
+            padding: 10px;
+          }
         }
-        input {
-          width: calc(100% - 20px);
-          padding: 10px;
+      }
+      .credit_check {
+        flex-direction: column;
+        border: 1px solid rgba(black, 0.2);
+        padding: 10px 20px;
+        margin: 10px 0;
+        .payment {
+          transform: scale(0.8);
+        }
+        .icons > i {
+          margin: 10px 5px;
+          font-size: 40px;
+          color: red;
         }
       }
     }
@@ -66,18 +95,34 @@
       display: flex;
       width: 100%;
       margin: 10px 0;
-      justify-content: flex-end;
-      cursor: pointer;
-      .btn-next {
+      flex-direction: row;
+      &.first_step {
+        justify-content: flex-end;
+      }
+      &.second_step {
+        justify-content: space-between
+      }
+      .btn_next, .btn_prev {
         @include flex-center;
         width: 100px;
-        justify-content: space-between;
         padding: 10px;
         border-radius: 20px;
+        cursor: pointer;
+        justify-content: space-between;
+        &.hide {
+          display: none;
+        }
+      }
+      .btn_next {
         background: $cornflowerblue;
         color: $white;
       }
+      .btn_prev {
+        background: $white;
+        color: $cornflowerblue;
+        border: 2px solid $cornflowerblue;
+        font-weight: 600;
+      }
     }
   }
-
 }
