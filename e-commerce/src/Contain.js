@@ -4,6 +4,7 @@ import { ReactComponent as Payment} from './img/payment.svg';
 import { ReactComponent as Diploma} from './img/diploma.svg';
 
 function Contain() {
+  const formId = 'name';
   const [ forename, setForename ] = useState('');
   const [ surname, setSurname ] = useState('');
   const [ infoTitle, setInfoTitle ] = useState('');
@@ -40,7 +41,9 @@ function Contain() {
     setFirstStep(true)
     setSecondStep(false)
   }
-  const goSecond = () => {
+  const goSecond = (e) => {
+    e.preventDefault();
+    
     setFirstStep(false)
     setSecondStep(true)
     setInfoTitle('Pago del product')
@@ -83,16 +86,16 @@ function Contain() {
           <span>{infoText}</span>
         </div>
         <div className="detail">
-          <div className={`input_name ${firstStep ? '' : 'hide'}`}>
+          <form className={`input_name ${firstStep ? '' : 'hide'}`} id={formId} onSubmit={goSecond}>
             <div className="forename">
               <span>Nombre</span>
-              <input type="text" value={forename} onChange={forenameHandler}/>
+              <input type="text" value={forename} onChange={forenameHandler} required/>
             </div>
             <div className="surname">
               <span>Apelidos</span>
-              <input type="text" value={surname} onChange={surnameHandler}/>
+              <input type="text" value={surname} onChange={surnameHandler} required/>
             </div>
-          </div>
+          </form>
           <div className={`credit_check ${secondStep ? '' : 'hide'}`}>
             <Payment className="payment"></Payment>
             <h1 className="payment_title">
@@ -108,10 +111,10 @@ function Contain() {
           </div>
         </div>
         <div className={`action ${firstStep ? 'first_step' : ''} ${secondStep ? 'second_step' : ''}`}>
-          <div className={'btn_next first_step ' + (firstStep ? '' : 'hide')} onClick={goSecond}>
+          <button type="submit" form={formId} className={'btn_next first_step ' + (firstStep ? '' : 'hide')} >
               <span>Continuar</span>
               <i className="fas fa-arrow-circle-right"></i>
-          </div>
+          </button>
           <div className={'btn_prev second_step ' + (secondStep ? '' : 'hide')} onClick={goFirst}>
             <i className="fas fa-arrow-circle-left"></i>
             <span>Anterior</span>
