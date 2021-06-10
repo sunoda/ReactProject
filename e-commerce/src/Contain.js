@@ -45,19 +45,17 @@ function Contain() {
   const goSecond = (e) => {
     e.preventDefault();
     axios.post(
-      'https://cors.io/?http://www.mocky.io/v2/5e3d41272d00003f7ed95c09',
+      'http://www.mocky.io/v2/5e3d41272d00003f7ed95c09',
       {forename, surname},
       {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+
         }
-      }).then(async (res) => {
-      await setSuccessMsg(res.data)
-    }).catch(
-      (err) => { 
-        alert(err);
-      }
-    ).then(() => {
+      }).then((res) => {
+      setSuccessMsg(res.data)
+    }).then(() => {
         if(successMsg) {
           console.log(successMsg)
           setFirstStep(false)
@@ -66,6 +64,11 @@ function Contain() {
           setInfoText('Una vez efectuado el pago del producto, recibiras un email con los de detolles de la comprp.')
         }
     })
+    .catch(
+      (err) => { 
+        alert(err);
+      }
+    )
   }
   const goFinish = () => {
     setFirstStep(false)
