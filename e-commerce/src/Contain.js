@@ -38,7 +38,7 @@ function Contain() {
   useEffect(() => {
     initial();
   }, [initial]);
-  async function fetchData() {
+  const fetchData = async() => {
     const res = await axios
     .get(
       "http://www.json-generator.com/api/json/get/bVRwJFxZhK?indent=2",
@@ -62,9 +62,8 @@ function Contain() {
     setFirstStep(true);
     setSecondStep(false);
   };
-  const goSecond = (e) => {
-    e.preventDefault();
-    fetchData()
+
+  const msgCheck = () => {
     if (successMsg) {
       setFirstStep(false);
       setSecondStep(true);
@@ -73,7 +72,11 @@ function Contain() {
         "Una vez efectuado el pago del producto, recibiras un email con los de detolles de la comprp."
       );
     }
-
+  }
+  const goSecond = async (e) => {
+    e.preventDefault();
+    await fetchData()
+    await msgCheck()
     // axios
     //   .get(
     //     "http://www.mocky.io/v2/5e3d41272d00003f7ed95c09",
