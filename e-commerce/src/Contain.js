@@ -29,6 +29,7 @@ function Contain() {
       setFirstStep(true);
       setSecondStep(false)
       setFinalStep(false)
+      setSuccessMsg('')
     }
     initSet();
   }, [])
@@ -57,15 +58,14 @@ function Contain() {
         alert(err);
       }
     ).then(() => {
-      setFirstStep(false)
-      setSecondStep(true)
-      setInfoTitle('Pago del product')
-      setInfoText('Una vez efectuado el pago del producto, recibiras un email con los de detolles de la comprp.')
-    }).catch(
-      (err) => { 
-        alert(err);
-      }
-    )
+        if(successMsg) {
+          console.log(successMsg)
+          setFirstStep(false)
+          setSecondStep(true)
+          setInfoTitle('Pago del product')
+          setInfoText('Una vez efectuado el pago del producto, recibiras un email con los de detolles de la comprp.')
+        }
+    })
   }
   const goFinish = () => {
     setFirstStep(false)
