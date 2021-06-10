@@ -43,14 +43,29 @@ function Contain() {
   }
   const goSecond = (e) => {
     e.preventDefault();
-    
-    setFirstStep(false)
-    setSecondStep(true)
-    setInfoTitle('Pago del product')
-    setInfoText('Una vez efectuado el pago del producto, recibiras un email con los de detolles de la comprp.')
-    axios.post('http://www.mocky.io/v2/5e3d41272d00003f7ed95c09', {forename, surname}).then(async (res) => {
+    axios.post(
+      'https://cors.io/?http://www.mocky.io/v2/5e3d41272d00003f7ed95c09',
+      {forename, surname},
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(async (res) => {
       await setSuccessMsg(res.data)
-    })
+    }).catch(
+      (err) => { 
+        alert(err);
+      }
+    ).then(() => {
+      setFirstStep(false)
+      setSecondStep(true)
+      setInfoTitle('Pago del product')
+      setInfoText('Una vez efectuado el pago del producto, recibiras un email con los de detolles de la comprp.')
+    }).catch(
+      (err) => { 
+        alert(err);
+      }
+    )
   }
   const goFinish = () => {
     setFirstStep(false)
@@ -81,7 +96,7 @@ function Contain() {
       </div>
       <div className="info">
         <div className="describe">
-          <Diploma className={finalStep ? '' : 'hide'}></Diploma>
+          <Diploma className={`diploma ${finalStep ? '' : 'hide'}`}></Diploma>
           <h1>{infoTitle}</h1>
           <span>{infoText}</span>
         </div>
