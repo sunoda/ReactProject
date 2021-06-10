@@ -45,19 +45,18 @@ function Contain() {
   const goSecond = (e) => {
     e.preventDefault();
     axios.post(
-      'http://www.mocky.io/v2/5e3d41272d00003f7ed95c09',
+      'https://cors.io/?http://www.mocky.io/v2/5e3d41272d00003f7ed95c09',
       {forename, surname},
       {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
-
         }
       }).then((res) => {
+        console.log(res);
       setSuccessMsg(res.data)
     }).then(() => {
         if(successMsg) {
-          console.log(successMsg)
           setFirstStep(false)
           setSecondStep(true)
           setInfoTitle('Pago del product')
