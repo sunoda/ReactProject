@@ -41,7 +41,7 @@ function Contain() {
   const fetchData = async() => {
     const res = await axios
     .get(
-      "http://www.json-generator.com/api/json/get/bVRwJFxZhK?indent=2",
+      "https://run.mocky.io/v3/d377fa67-4777-4f24-92cd-c179483b0134",
       { forename, surname },
       {
         headers: {
